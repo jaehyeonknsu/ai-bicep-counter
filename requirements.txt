@@ -2,4 +2,3 @@ streamlit
 streamlit-webrtc
 opencv-python
 numpy
-streamlit-pose @ git+https://github.com/whitphx/streamlit-pose.git

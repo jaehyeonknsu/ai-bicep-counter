@@ -1,3 +1,15 @@
+# --- streamlit-pose가 설치되지 않았을 경우 자동 설치 ---
+import os
+import subprocess
+import sys
+
+try:
+    import streamlit_pose
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "git+https://github.com/whitphx/streamlit-pose.git"])
+    import streamlit_pose
+
+# --- 나머지 일반 코드 ---
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 from streamlit_pose import PoseDetector
@@ -8,7 +20,6 @@ st.set_page_config(page_title="AI 아령 카운터", layout="centered")
 st.title("🏋️‍♂️ AI 아령 카운터")
 st.markdown("실시간으로 아령 운동 횟수를 세어주는 웹앱입니다.")
 
-# 각도 계산 함수
 def calculate_angle(a, b, c):
     a = np.array(a)
     b = np.array(b)
