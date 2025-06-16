@@ -17,7 +17,6 @@ def calculate_angle(a, b, c):
     angle = np.abs(radians * 180.0 / np.pi)
     return 360 - angle if angle > 180.0 else angle
 
-# 비디오 처리 클래스
 class BicepCounter(VideoProcessorBase):
     def __init__(self):
         self.detector = PoseDetector(static_image_mode=False)
@@ -30,9 +29,7 @@ class BicepCounter(VideoProcessorBase):
 
         if results.pose_landmarks:
             landmarks = results.pose_landmarks.landmark
-
             try:
-                # 오른쪽 어깨, 팔꿈치, 손목의 인덱스
                 shoulder = [landmarks[12].x, landmarks[12].y]
                 elbow = [landmarks[14].x, landmarks[14].y]
                 wrist = [landmarks[16].x, landmarks[16].y]
@@ -57,5 +54,4 @@ class BicepCounter(VideoProcessorBase):
 
         return image
 
-# 앱 실행
 webrtc_streamer(key="bicep", video_processor_factory=BicepCounter)
